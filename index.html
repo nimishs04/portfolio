@@ -486,42 +486,6 @@
             border: 1px solid var(--accent-light);
         }
 
-        .skill-chart {
-            margin-top: 1.5rem;
-        }
-
-        .skill-bar {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1.2rem;
-        }
-
-        .skill-name {
-            width: 200px;
-            font-size: 0.95rem;
-        }
-
-        .skill-level {
-            flex: 1;
-            height: 10px;
-            background: var(--border);
-            border-radius: 5px;
-            overflow: hidden;
-        }
-
-        .skill-fill {
-            height: 100%;
-            background: var(--accent);
-            border-radius: 5px;
-        }
-
-        .skill-percent {
-            width: 50px;
-            text-align: right;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-
         /* Hobbies section */
         .hobbies-grid {
             display: grid;
@@ -573,92 +537,45 @@
         }
 
         /* Papers section */
-        .pdf-container {
-            display: flex;
-            gap: 2rem;
+        .downloads-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
             margin-top: 1.5rem;
-            flex-wrap: wrap;
         }
 
-        #pdf-viewer {
-            flex: 1;
-            min-height: 70vh;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            min-width: 300px;
-            background: var(--card-bg);
-            box-shadow: 0 4px 12px var(--card-shadow);
-        }
-
-        .pdf-list {
-            width: 300px;
+        .download-section {
             background: var(--card-bg);
             border-radius: 12px;
-            padding: 1.5rem;
+            padding: 1.8rem;
             box-shadow: 0 4px 12px var(--card-shadow);
             border: 1px solid var(--border);
         }
 
-        .pdf-list h3 {
+        .download-section h3 {
             margin-top: 0;
             font-size: 1.3rem;
-        }
-
-        .pdf-list ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .pdf-btn {
-            width: 100%;
-            padding: 1rem;
-            margin-bottom: 0.8rem;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            text-align: left;
-            cursor: pointer;
-            color: var(--text-primary);
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .pdf-btn:hover {
-            border-color: var(--accent);
-            transform: translateX(5px);
-        }
-
-        /* Mobile download links */
-        .mobile-downloads {
-            display: none;
-            margin-top: 2rem;
-        }
-
-        .mobile-downloads .section-title {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--accent);
-            border-bottom: 2px solid var(--accent);
             padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent);
+            color: var(--accent);
+            margin-bottom: 1.5rem;
         }
 
-        .mobile-downloads ul {
+        .download-section ul {
             list-style: none;
             padding: 0;
         }
 
-        .mobile-downloads li {
+        .download-section li {
             margin-bottom: 1rem;
         }
 
-        .mobile-downloads a {
+        .download-btn {
             display: flex;
             align-items: center;
             gap: 10px;
             padding: 1rem;
-            background: var(--card-bg);
+            background: var(--bg-secondary);
             border-radius: 8px;
             text-decoration: none;
             color: var(--text-primary);
@@ -666,7 +583,7 @@
             transition: all 0.2s;
         }
 
-        .mobile-downloads a:hover {
+        .download-btn:hover {
             border-color: var(--accent);
             transform: translateX(5px);
         }
@@ -775,22 +692,6 @@
                 padding: 2rem;
                 padding-top: 5rem; /* Space for mobile toggle */
             }
-
-            .pdf-container {
-                flex-direction: column;
-            }
-
-            .pdf-list {
-                width: 100%;
-            }
-
-            #pdf-viewer {
-                display: none;
-            }
-
-            .mobile-downloads {
-                display: block;
-            }
         }
 
         @media (max-width: 600px) {
@@ -808,6 +709,10 @@
             }
             
             .skills-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .downloads-container {
                 grid-template-columns: 1fr;
             }
         }
@@ -1068,35 +973,13 @@
                 
                 <div class="skill-category">
                     <h3><i class="fas fa-atom"></i> Physics Specializations</h3>
-                    <div class="skill-chart">
-                        <div class="skill-bar">
-                            <div class="skill-name">Density Functional Theory</div>
-                            <div class="skill-level">
-                                <div class="skill-fill" style="width: 90%"></div>
-                            </div>
-                            <div class="skill-percent">90%</div>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-name">Quantum Computing</div>
-                            <div class="skill-level">
-                                <div class="skill-fill" style="width: 85%"></div>
-                            </div>
-                            <div class="skill-percent">85%</div>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-name">Optics & Plasmonics</div>
-                            <div class="skill-level">
-                                <div class="skill-fill" style="width: 80%"></div>
-                            </div>
-                            <div class="skill-percent">80%</div>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-name">Molecular Dynamics</div>
-                            <div class="skill-level">
-                                <div class="skill-fill" style="width: 75%"></div>
-                            </div>
-                            <div class="skill-percent">75%</div>
-                        </div>
+                    <div class="skill-badges">
+                        <span class="skill-badge">Density Functional Theory</span>
+                        <span class="skill-badge">Quantum Computing</span>
+                        <span class="skill-badge">Optics & Plasmonics</span>
+                        <span class="skill-badge">Molecular Dynamics</span>
+                        <span class="skill-badge">Material Characterization</span>
+                        <span class="skill-badge">Experimental Design</span>
                     </div>
                 </div>
                 
@@ -1110,7 +993,6 @@
                         <span class="skill-badge">Technical Writing</span>
                         <span class="skill-badge">Data Analysis</span>
                         <span class="skill-badge">Quantum Algorithms</span>
-                        <span class="skill-badge">Material Characterization</span>
                     </div>
                 </div>
             </div>
@@ -1119,57 +1001,55 @@
         <!-- Papers/Reports Section -->
         <section id="papers" class="content-section">
             <h2>Reports & Certificates</h2>
-            <div class="pdf-container">
-                <!-- PDF Viewer Container -->
-                <iframe id="pdf-viewer" title="PDF Viewer"></iframe>
-                
-                <!-- PDF List -->
-                <div class="pdf-list">
+            
+            <div class="downloads-container">
+                <div class="download-section">
                     <h3>Project Reports</h3>
                     <ul>
-                        <li><button class="pdf-btn" data-src="papers/term_paper.pdf"><i class="fas fa-file-pdf"></i> Metasurfaces & Flat Optics Term Paper</button></li>
-                        <li><button class="pdf-btn" data-src="papers/heusler_alloys_report.pdf"><i class="fas fa-file-pdf"></i> Heusler Alloys Investigation Report</button></li>
-                        <li><button class="pdf-btn" data-src="papers/quantum_ml_report.pdf"><i class="fas fa-file-pdf"></i> Quantum Machine Learning Report</button></li>
-                    </ul>
-                    
-                    <h3>Certificates</h3>
-                    <ul>
-                        <li><button class="pdf-btn" data-src="papers/nptel_certificate.pdf"><i class="fas fa-file-certificate"></i> Physics through Computational Thinking (NPTEL)</button></li>
-                        <li><button class="pdf-btn" data-src="papers/purdue_certificate.pdf"><i class="fas fa-file-certificate"></i> Atoms to Materials (Purdue University)</button></li>
+                        <li>
+                            <a href="papers/term_paper.pdf" class="download-btn" download>
+                                <i class="fas fa-file-pdf"></i> Metasurfaces & Flat Optics Term Paper
+                            </a>
+                        </li>
+                        <li>
+                            <a href="papers/heusler_alloys_report.pdf" class="download-btn" download>
+                                <i class="fas fa-file-pdf"></i> Heusler Alloys Investigation Report
+                            </a>
+                        </li>
+                        <li>
+                            <a href="papers/quantum_ml_report.pdf" class="download-btn" download>
+                                <i class="fas fa-file-pdf"></i> Quantum Machine Learning Report
+                            </a>
+                        </li>
                     </ul>
                 </div>
-            </div>
-            
-            <!-- Mobile Download Links -->
-            <div class="mobile-downloads">
-                <h3 class="section-title">Download Reports & Certificates</h3>
-                <ul>
-                    <li>
-                        <a href="papers/term_paper.pdf" download>
-                            <i class="fas fa-file-pdf"></i> Metasurfaces & Flat Optics Term Paper
-                        </a>
-                    </li>
-                    <li>
-                        <a href="papers/heusler_alloys_report.pdf" download>
-                            <i class="fas fa-file-pdf"></i> Heusler Alloys Investigation Report
-                        </a>
-                    </li>
-                    <li>
-                        <a href="papers/quantum_ml_report.pdf" download>
-                            <i class="fas fa-file-pdf"></i> Quantum Machine Learning Report
-                        </a>
-                    </li>
-                    <li>
-                        <a href="papers/nptel_certificate.pdf" download>
-                            <i class="fas fa-file-certificate"></i> Physics through Computational Thinking (NPTEL)
-                        </a>
-                    </li>
-                    <li>
-                        <a href="papers/purdue_certificate.pdf" download>
-                            <i class="fas fa-file-certificate"></i> Atoms to Materials (Purdue University)
-                        </a>
-                    </li>
-                </ul>
+                
+                <div class="download-section">
+                    <h3>Workshop Certificates</h3>
+                    <ul>
+                        <li>
+                            <a href="papers/nptel_certificate.pdf" class="download-btn" download>
+                                <i class="fas fa-file-certificate"></i> Physics through Computational Thinking (NPTEL)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="papers/purdue_certificate.pdf" class="download-btn" download>
+                                <i class="fas fa-file-certificate"></i> Atoms to Materials (Purdue University)
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="download-section">
+                    <h3>Other Documents</h3>
+                    <ul>
+                        <li>
+                            <a href="CV_Nimish_Sharma.pdf" class="download-btn" download>
+                                <i class="fas fa-download"></i> Download Full CV
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </section>
 
@@ -1235,8 +1115,6 @@
         const navButtons = document.querySelectorAll('.nav-btn');
         const contentSections = document.querySelectorAll('.content-section');
         const themeSwitcher = document.getElementById('theme-switcher');
-        const pdfButtons = document.querySelectorAll('.pdf-btn');
-        const pdfViewer = document.getElementById('pdf-viewer');
         const mobileToggle = document.getElementById('mobile-toggle');
         const sidebar = document.getElementById('sidebar');
 
@@ -1282,27 +1160,6 @@
         if (localStorage.getItem('theme') === 'dark') {
             document.body.classList.add('dark-theme');
             themeSwitcher.checked = true;
-        }
-
-        // PDF viewer functionality
-        pdfButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Update PDF viewer source
-                pdfViewer.src = button.dataset.src;
-                
-                // Add visual feedback
-                pdfButtons.forEach(btn => {
-                    btn.style.borderColor = '';
-                    btn.style.fontWeight = 'normal';
-                });
-                button.style.borderColor = '#4361ee';
-                button.style.fontWeight = '600';
-            });
-        });
-
-        // Load first PDF by default if available
-        if (pdfButtons.length > 0) {
-            pdfButtons[0].click();
         }
     </script>
 </body>
