@@ -3,13 +3,1307 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nimish Sharma</title>
-    <link rel="stylesheet" href="app.css">
+    <title>Nimish Sharma | Academic Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* Light theme variables */
+            --bg-primary: #f8f9fa;
+            --bg-secondary: #ffffff;
+            --text-primary: #212529;
+            --text-secondary: #495057;
+            --accent: #4361ee;
+            --accent-light: #4895ef;
+            --border: #dee2e6;
+            --shadow: rgba(0,0,0,0.1);
+            --card-bg: #ffffff;
+            --card-shadow: rgba(0,0,0,0.05);
+            --highlight: #ffd700;
+        }
+
+        .dark-theme {
+            /* Dark theme variables */
+            --bg-primary: #121212;
+            --bg-secondary: #1e1e1e;
+            --text-primary: #f8f9fa;
+            --text-secondary: #adb5bd;
+            --accent: #4895ef;
+            --accent-light: #5fa5f0;
+            --border: #343a40;
+            --shadow: rgba(0,0,0,0.3);
+            --card-bg: #1e1e1e;
+            --card-shadow: rgba(0,0,0,0.2);
+            --highlight: #ffd700;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            display: flex;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Sidebar styling */
+        #sidebar {
+            width: 280px;
+            background: var(--bg-secondary);
+            padding: 2rem 1.5rem;
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 2px 0 5px var(--shadow);
+            z-index: 10;
+        }
+
+        .profile-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            text-align: center;
+            padding-bottom: 1rem;
+        }
+
+        .profile-img-placeholder {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--accent-light);
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            overflow: hidden;
+        }
+
+        .profile-img-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-header h2 {
+            font-size: 1.1rem;
+            font-weight: normal;
+            color: var(--text-secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            flex-grow: 1;
+        }
+
+        .nav-btn {
+            padding: 1rem;
+            border: none;
+            background: transparent;
+            text-align: left;
+            border-radius: 8px;
+            cursor: pointer;
+            color: var(--text-primary);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s;
+        }
+
+        .nav-btn:hover {
+            background-color: rgba(67, 97, 238, 0.1);
+        }
+
+        .nav-btn.active {
+            background-color: var(--accent);
+            color: white;
+            font-weight: 600;
+        }
+
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin: 1.5rem 0;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0.8rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .social-btn:hover {
+            background-color: rgba(67, 97, 238, 0.1);
+            transform: translateX(5px);
+        }
+
+        /* Email social button */
+        .social-btn.email {
+            word-break: break-all;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: auto;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--accent);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        /* Main content styling */
+        #content {
+            flex: 1;
+            padding: 3rem;
+            overflow-y: auto;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+        }
+
+        .content-section {
+            display: none;
+            max-width: 1200px;
+            margin: 0 auto;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent);
+            color: var(--accent);
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin: 1.2rem 0 0.8rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        /* Highlight cards for About Me section */
+        .highlight-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.8rem;
+            margin-bottom: 1.8rem;
+            box-shadow: 0 4px 12px var(--card-shadow);
+            border: 1px solid var(--border);
+        }
+
+        .interests-list {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        .interests-list li {
+            margin-bottom: 0.7rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .interests-list li:before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .education-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .education-item h4 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .date {
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .coursework {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .course-column {
+            flex: 1;
+        }
+
+        .course-column ul {
+            padding-left: 1.2rem;
+        }
+
+        .course-column li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .course-column li:before {
+            content: "›";
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+        }
+
+        /* Research experience styling */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: var(--accent);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 50px;
+        }
+
+        .timeline-date {
+            position: absolute;
+            left: 0;
+            top: -10px;
+            background: var(--accent);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            z-index: 2;
+        }
+
+        .timeline-content {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px var(--card-shadow);
+            border: 1px solid var(--border);
+        }
+
+        .timeline-content h3 {
+            margin-top: 0;
+        }
+
+        .timeline-content ul {
+            padding-left: 1.5rem;
+            margin-top: 0.8rem;
+        }
+
+        .timeline-content li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+
+        .timeline-content li:before {
+            content: "›";
+            color: var(--accent);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Projects grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px var(--card-shadow);
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-card h3 {
+            font-size: 1.3rem;
+            margin-top: 0;
+        }
+
+        .project-card ul {
+            padding-left: 1.2rem;
+            margin-top: 0.8rem;
+        }
+
+        .project-card li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+
+        .project-card li:before {
+            content: "•";
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+        }
+
+        /* Skills section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+            gap: 1.8rem;
+            margin-top: 1rem;
+        }
+
+        .skill-category {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.8rem;
+            box-shadow: 0 4px 12px var(--card-shadow);
+            border: 1px solid var(--border);
+        }
+
+        .skill-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .skill-badge {
+            background: rgba(67, 97, 238, 0.1);
+            color: var(--accent);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            border: 1px solid var(--accent-light);
+        }
+
+        .skill-chart {
+            margin-top: 1.5rem;
+        }
+
+        .skill-bar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.2rem;
+        }
+
+        .skill-name {
+            width: 200px;
+            font-size: 0.95rem;
+        }
+
+        .skill-level {
+            flex: 1;
+            height: 10px;
+            background: var(--border);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .skill-fill {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 5px;
+        }
+
+        .skill-percent {
+            width: 50px;
+            text-align: right;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Hobbies section */
+        .hobbies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .hobby-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.8rem;
+            text-align: center;
+            box-shadow: 0 4px 12px var(--card-shadow);
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease;
+        }
+
+        .hobby-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .hobby-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(67, 97, 238, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.2rem;
+            font-size: 2rem;
+            color: var(--accent);
+        }
+
+        .hobby-card h3 {
+            margin: 0 0 1rem;
+            justify-content: center;
+        }
+
+        .hobby-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .hobby-card li {
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        /* Papers section */
+        .pdf-container {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        #pdf-viewer {
+            flex: 1;
+            min-height: 70vh;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            min-width: 300px;
+            background: var(--card-bg);
+            box-shadow: 0 4px 12px var(--card-shadow);
+        }
+
+        .pdf-list {
+            width: 300px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px var(--card-shadow);
+            border: 1px solid var(--border);
+        }
+
+        .pdf-list h3 {
+            margin-top: 0;
+            font-size: 1.3rem;
+        }
+
+        .pdf-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .pdf-btn {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 0.8rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            text-align: left;
+            cursor: pointer;
+            color: var(--text-primary);
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pdf-btn:hover {
+            border-color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        /* Mobile download links */
+        .mobile-downloads {
+            display: none;
+            margin-top: 2rem;
+        }
+
+        .mobile-downloads .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.5rem;
+        }
+
+        .mobile-downloads ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .mobile-downloads li {
+            margin-bottom: 1rem;
+        }
+
+        .mobile-downloads a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 1rem;
+            background: var(--card-bg);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+            transition: all 0.2s;
+        }
+
+        .mobile-downloads a:hover {
+            border-color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        /* Fellowship Highlight */
+        .fellowship-highlight {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.05));
+            border-left: 4px solid var(--highlight);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .fellowship-highlight h3 {
+            color: var(--highlight);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 0;
+        }
+
+        .fellowship-highlight p {
+            margin-bottom: 0.5rem;
+        }
+
+        .award-badge {
+            display: inline-block;
+            background: var(--highlight);
+            color: #000;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive design */
+        @media (max-width: 1200px) {
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 900px) {
+            body {
+                flex-direction: column;
+            }
+
+            #sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                padding: 1.5rem;
+                overflow-x: hidden;
+                overflow-y: auto;
+                position: fixed;
+                top: 0;
+                left: -100%;
+                height: 100%;
+                z-index: 998;
+                background: var(--bg-secondary);
+                box-shadow: 2px 0 8px var(--shadow);
+                transition: left 0.3s ease;
+                padding-top: 5rem;
+            }
+
+            #sidebar.active {
+                left: 0;
+            }
+
+            .profile-header {
+                flex-direction: row;
+                align-items: center;
+                gap: 1.5rem;
+                text-align: left;
+                padding-bottom: 1rem;
+            }
+
+            .profile-img-placeholder {
+                margin: 0;
+                width: 80px;
+                height: 80px;
+                font-size: 3rem;
+            }
+
+            .profile-name-container {
+                display: flex;
+                flex-direction: column;
+                gap: 0.2rem;
+            }
+
+            .profile-name-container h2.subtitle {
+                font-size: 0.9rem;
+                color: var(--text-secondary);
+                margin: 0;
+            }
+
+            .nav-links {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            #content {
+                padding: 2rem;
+                padding-top: 5rem; /* Space for mobile toggle */
+            }
+
+            .pdf-container {
+                flex-direction: column;
+            }
+
+            .pdf-list {
+                width: 100%;
+            }
+
+            #pdf-viewer {
+                display: none;
+            }
+
+            .mobile-downloads {
+                display: block;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .coursework {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hobbies-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Mobile Nav Toggle */
+        .mobile-nav-toggle {
+            display: none;
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            background: var(--accent);
+            color: white;
+            border: none;
+            font-size: 1.5rem;
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            z-index: 999;
+            cursor: pointer;
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        /* Show hamburger on small screens */
+        @media (max-width: 900px) {
+            .mobile-nav-toggle {
+                display: block;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Hello I am Nimish Sharma</h1>
-    </div>
-    <script src="index.js"></script>
+    <!-- Mobile nav toggle -->
+    <button id="mobile-toggle" class="mobile-nav-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Side navigation panel -->
+    <nav id="sidebar">
+        <div class="profile-header">
+            <!-- Profile picture placeholder -->
+            <div class="profile-img-placeholder">
+                <img src="pfp.jpeg" alt="Profile Picture">
+            </div>
+            <div class="profile-name-container">
+                <h1>Nimish Sharma</h1>
+                <h2 class="subtitle">Physics Undergraduate</h2>
+            </div>
+        </div>
+        
+        <!-- Navigation tabs -->
+        <div class="nav-links">
+            <button class="nav-btn active" data-target="about">About Me</button>
+            <button class="nav-btn" data-target="research">Research Experience</button>
+            <button class="nav-btn" data-target="skills">Skills</button>
+            <button class="nav-btn" data-target="papers">Reports/Certificates</button>
+            <button class="nav-btn" data-target="hobbies">Extra-Curricular</button>
+        </div>
+        
+        <!-- Social links -->
+        <div class="social-links">
+            <a href="CV_Nimish_Sharma.pdf" target="_blank" class="social-btn">
+                <i class="fas fa-file-pdf"></i> CV
+            </a>
+            <a href="https://www.linkedin.com/in/nimish-sharma-59831a232" target="_blank" class="social-btn">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+            <a href="https://github.com/yourprofile" target="_blank" class="social-btn">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+            <a class="social-btn email" href="mailto:ns21ms184@iiserkol.ac.in">
+                <i class="fas fa-envelope"></i> Contact
+            </a>
+        </div>
+        
+        <!-- Theme toggle -->
+        <div class="theme-toggle">
+            <span>Light</span>
+            <label class="switch">
+                <input type="checkbox" id="theme-switcher">
+                <span class="slider"></span>
+            </label>
+            <span>Dark</span>
+        </div>
+    </nav>
+
+    <!-- Main content area -->
+    <main id="content">
+        <!-- About Me Section -->
+        <section id="about" class="content-section active">
+            <h2>About Me</h2>
+            <p>Hey there, Welcome to my personal webpage. I am a fourth-year undergraduate student in Physics at IISER Kolkata with a strong passion for optics and experimental physics. Alongside my academic pursuits, I have developed significant expertise in computational physics and experimental material sciences.</p>
+            
+            <div class="highlight-card">
+                <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+                <div class="education-item">
+                    <h4>BS-MS in Physics with Minor in Computer Science</h4>
+                    <p><i class="fas fa-university"></i> Indian Institute of Science Education and Research Kolkata</p>
+                    <p><i class="fas fa-calendar"></i> August 2021 – May 2026 </p>
+                </div>
+            </div>
+            
+            <div class="highlight-card">
+                <h3><i class="fas fa-flask"></i> Research Interests</h3>
+                <ul class="interests-list">
+                    <li>Material Science & Nanophotonics</li>
+                    <li>Spin-orbit coupling effects in nano-optics</li>
+                    <li>Computational modelling of light-matter interactions</li>
+                    <li>Quantum computing applications in material science</li>
+                    <li>Bio-optics and biomedical imaging applications</li>
+                </ul>
+            </div>
+            
+            <div class="highlight-card">
+                <h3><i class="fas fa-book"></i> Key Coursework</h3>
+                <div class="coursework">
+                    <div class="course-column">
+                        <ul>
+                            <li>Advanced Optics Laboratory</li>
+                            <li>Quantum Mechanics I, II, III</li>
+                            <li>Condensed Matter Physics</li>
+                            <li>Computational Physics</li>
+                            <li>Quantum Information Processing</li>
+                        </ul>
+                    </div>
+                    <div class="course-column">
+                        <ul>
+                            <li>Numerical Analysis Methods (MATLAB)</li>
+                            <li>Data Structures and Algorithms</li>
+                            <li>Field Theory & Relativistic QM</li>
+                            <li>Density Functional Theory</li>
+                            <li>Molecular Dynamics</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Research Experience Section -->
+        <section id="research" class="content-section">
+            <h2>Research Experience</h2>
+            
+            <!-- Fellowship Highlight -->
+            <div class="fellowship-highlight">
+                <div class="award-badge">Prestigious Award</div>
+                <h3><i class="fas fa-award"></i> Indian Academy of Sciences Summer Research Fellowship</h3>
+                <p>Selected for the prestigious Summer Research Fellowship Program offered by the Indian Academy of Sciences at SVNIT Surat.</p>
+                <p>This highly competitive program selects top undergraduate and postgraduate students from across India to pursue cutting-edge research at premier institutions.</p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">Jan 2025 - Present</div>
+                    <div class="timeline-content">
+                        <h3>Bio-Optics Lab | IISER Kolkata</h3>
+                        <ul>
+                            <li>Conducting experimental research on optical properties of nanostructured materials</li>
+                            <li>Investigating plasmonic interactions for enhanced imaging and sensing technologies</li>
+                            <li>Integrating computational modelling with lab-based experimentation</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">May 2024 - Jul 2024</div>
+                    <div class="timeline-content">
+                        <h3>First Principle Investigations on Heusler Alloys | SVNIT Surat</h3>
+                        <ul>
+                            <li>Studied Density Functional Theory and solid state physics fundamentals</li>
+                            <li>Replicated results from published papers using Quantum ESPRESSO and WIEN2k</li>
+                            <li>Performed structural optimizations and calculated magnetic/elastic properties</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">May 2023 - Jul 2023</div>
+                    <div class="timeline-content">
+                        <h3>Quantum Machine Learning | IISER Bhopal</h3>
+                        <ul>
+                            <li>Developed quantum deep learning network for Iris dataset classification</li>
+                            <li>Tested on IBMQManila and compared with classical ML models</li>
+                            <li>Explored applications of quantum computing in machine learning</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <h2>Academic Projects</h2>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Metasurfaces & Flat Optics Term Paper</h3>
+                    <p class="date">Oct 2024 - Dec 2024</p>
+                    <ul>
+                        <li>Analyzed Optical Spin Hall effect and spin-orbit interactions</li>
+                        <li>Mathematically derived refractive index gradient effects</li>
+                        <li>Presented comprehensive review of metasurfaces</li>
+                    </ul>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Library Management System</h3>
+                    <p class="date">Jan 2024</p>
+                    <ul>
+                        <li>Developed system with user/admin login in C</li>
+                        <li>Implemented book search, issue, and record management</li>
+                        <li>Recognized with outstanding group assignment mention</li>
+                    </ul>
+                </div>
+                
+                <div class="project-card">
+                    <h3>LiFi Audio Transmission</h3>
+                    <p class="date">2020</p>
+                    <ul>
+                        <li>Built working prototype for audio transmission via light spectrum</li>
+                        <li>Won various awards at school level</li>
+                    </ul>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Bus Booking Portal</h3>
+                    <p class="date">2023</p>
+                    <ul>
+                        <li>Developed portal using Python and MySQL</li>
+                        <li>Implemented booking, payment, and management features</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="content-section">
+            <h2>Technical Skills</h2>
+            
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> Programming & Languages</h3>
+                    <div class="skill-badges">
+                        <span class="skill-badge">C</span>
+                        <span class="skill-badge">Python</span>
+                        <span class="skill-badge">MATLAB</span>
+                        <span class="skill-badge">Qiskit</span>
+                        <span class="skill-badge">LaTeX</span>
+                        <span class="skill-badge">MySQL</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3><i class="fas fa-cube"></i> Software & Tools</h3>
+                    <div class="skill-badges">
+                        <span class="skill-badge">Quantum ESPRESSO</span>
+                        <span class="skill-badge">WIEN2k</span>
+                        <span class="skill-badge">Origin</span>
+                        <span class="skill-badge">GNU-Plot</span>
+                        <span class="skill-badge">Wolfram Mathematica</span>
+                        <span class="skill-badge">NanoHub</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3><i class="fas fa-atom"></i> Physics Specializations</h3>
+                    <div class="skill-chart">
+                        <div class="skill-bar">
+                            <div class="skill-name">Density Functional Theory</div>
+                            <div class="skill-level">
+                                <div class="skill-fill" style="width: 90%"></div>
+                            </div>
+                            <div class="skill-percent">90%</div>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-name">Quantum Computing</div>
+                            <div class="skill-level">
+                                <div class="skill-fill" style="width: 85%"></div>
+                            </div>
+                            <div class="skill-percent">85%</div>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-name">Optics & Plasmonics</div>
+                            <div class="skill-level">
+                                <div class="skill-fill" style="width: 80%"></div>
+                            </div>
+                            <div class="skill-percent">80%</div>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-name">Molecular Dynamics</div>
+                            <div class="skill-level">
+                                <div class="skill-fill" style="width: 75%"></div>
+                            </div>
+                            <div class="skill-percent">75%</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3><i class="fas fa-brain"></i> Additional Competencies</h3>
+                    <div class="skill-badges">
+                        <span class="skill-badge">Machine Learning</span>
+                        <span class="skill-badge">Numerical Methods</span>
+                        <span class="skill-badge">Scientific Computing</span>
+                        <span class="skill-badge">Experimental Techniques</span>
+                        <span class="skill-badge">Technical Writing</span>
+                        <span class="skill-badge">Data Analysis</span>
+                        <span class="skill-badge">Quantum Algorithms</span>
+                        <span class="skill-badge">Material Characterization</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Papers/Reports Section -->
+        <section id="papers" class="content-section">
+            <h2>Reports & Certificates</h2>
+            <div class="pdf-container">
+                <!-- PDF Viewer Container -->
+                <iframe id="pdf-viewer" title="PDF Viewer"></iframe>
+                
+                <!-- PDF List -->
+                <div class="pdf-list">
+                    <h3>Project Reports</h3>
+                    <ul>
+                        <li><button class="pdf-btn" data-src="papers/term_paper.pdf"><i class="fas fa-file-pdf"></i> Metasurfaces & Flat Optics Term Paper</button></li>
+                        <li><button class="pdf-btn" data-src="papers/heusler_alloys_report.pdf"><i class="fas fa-file-pdf"></i> Heusler Alloys Investigation Report</button></li>
+                        <li><button class="pdf-btn" data-src="papers/quantum_ml_report.pdf"><i class="fas fa-file-pdf"></i> Quantum Machine Learning Report</button></li>
+                    </ul>
+                    
+                    <h3>Certificates</h3>
+                    <ul>
+                        <li><button class="pdf-btn" data-src="papers/nptel_certificate.pdf"><i class="fas fa-file-certificate"></i> Physics through Computational Thinking (NPTEL)</button></li>
+                        <li><button class="pdf-btn" data-src="papers/purdue_certificate.pdf"><i class="fas fa-file-certificate"></i> Atoms to Materials (Purdue University)</button></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Mobile Download Links -->
+            <div class="mobile-downloads">
+                <h3 class="section-title">Download Reports & Certificates</h3>
+                <ul>
+                    <li>
+                        <a href="papers/term_paper.pdf" download>
+                            <i class="fas fa-file-pdf"></i> Metasurfaces & Flat Optics Term Paper
+                        </a>
+                    </li>
+                    <li>
+                        <a href="papers/heusler_alloys_report.pdf" download>
+                            <i class="fas fa-file-pdf"></i> Heusler Alloys Investigation Report
+                        </a>
+                    </li>
+                    <li>
+                        <a href="papers/quantum_ml_report.pdf" download>
+                            <i class="fas fa-file-pdf"></i> Quantum Machine Learning Report
+                        </a>
+                    </li>
+                    <li>
+                        <a href="papers/nptel_certificate.pdf" download>
+                            <i class="fas fa-file-certificate"></i> Physics through Computational Thinking (NPTEL)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="papers/purdue_certificate.pdf" download>
+                            <i class="fas fa-file-certificate"></i> Atoms to Materials (Purdue University)
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Hobbies Section -->
+        <section id="hobbies" class="content-section">
+            <h2>Personal Interests</h2>
+            
+            <div class="hobbies-grid">
+                <div class="hobby-card">
+                    <div class="hobby-icon">
+                        <i class="fas fa-futbol"></i>
+                    </div>
+                    <h3>Sports</h3>
+                    <ul>
+                        <li>Competitive Football</li>
+                        <li>1st Place Interbatch Tournament</li>
+                        <li>Table Tennis Champion</li>
+                        <li>Futsal Gold Medalist</li>
+                    </ul>
+                </div>
+                
+                <div class="hobby-card">
+                    <div class="hobby-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3>Music</h3>
+                    <ul>
+                        <li>Guitarist</li>
+                        <li>Performed in RAMPAGE</li>
+                        <li>Music Composition</li>
+                    </ul>
+                </div>
+                
+                <div class="hobby-card">
+                    <div class="hobby-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3>Volunteering</h3>
+                    <ul>
+                        <li>Taught STEM subjects</li>
+                        <li>Menstrual Hygiene Drive</li>
+                        <li>Community Outreach</li>
+                    </ul>
+                </div>
+                
+                <div class="hobby-card">
+                    <div class="hobby-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Innovation</h3>
+                    <ul>
+                        <li>LiFi Prototype</li>
+                        <li>Bus Booking Portal</li>
+                        <li>Technical Projects</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // DOM Elements
+        const navButtons = document.querySelectorAll('.nav-btn');
+        const contentSections = document.querySelectorAll('.content-section');
+        const themeSwitcher = document.getElementById('theme-switcher');
+        const pdfButtons = document.querySelectorAll('.pdf-btn');
+        const pdfViewer = document.getElementById('pdf-viewer');
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const sidebar = document.getElementById('sidebar');
+
+        // Switch content sections
+        navButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons and sections
+                navButtons.forEach(btn => btn.classList.remove('active'));
+                contentSections.forEach(section => section.classList.remove('active'));
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                // Show corresponding section
+                const targetSection = document.getElementById(button.dataset.target);
+                targetSection.classList.add('active');
+                
+                // Scroll to top of content
+                document.getElementById('content').scrollTop = 0;
+                
+                // Close sidebar on mobile after selection
+                if (window.innerWidth <= 900) {
+                    sidebar.classList.remove('active');
+                    document.body.classList.remove('nav-open');
+                }
+            });
+        });
+
+        // Theme switcher functionality
+        themeSwitcher.addEventListener('change', function() {
+            document.body.classList.toggle('dark-theme', this.checked);
+            // Save preference
+            localStorage.setItem('theme', this.checked ? 'dark' : 'light');
+        });
+
+        // Mobile sidebar toggle
+        mobileToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            document.body.classList.toggle('nav-open');
+        });
+
+        // Check for saved theme preference
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-theme');
+            themeSwitcher.checked = true;
+        }
+
+        // PDF viewer functionality
+        pdfButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update PDF viewer source
+                pdfViewer.src = button.dataset.src;
+                
+                // Add visual feedback
+                pdfButtons.forEach(btn => {
+                    btn.style.borderColor = '';
+                    btn.style.fontWeight = 'normal';
+                });
+                button.style.borderColor = '#4361ee';
+                button.style.fontWeight = '600';
+            });
+        });
+
+        // Load first PDF by default if available
+        if (pdfButtons.length > 0) {
+            pdfButtons[0].click();
+        }
+    </script>
 </body>
 </html>
