@@ -765,6 +765,7 @@
         <div class="nav-links">
             <button class="nav-btn active" data-target="about">About Me</button>
             <button class="nav-btn" data-target="research">Research Experience</button>
+            <button class="nav-btn" data-target="teaching">Teaching Experience</button>
             <button class="nav-btn" data-target="skills">Skills</button>
             <button class="nav-btn" data-target="papers">Reports/Certificates</button>
             <button class="nav-btn" data-target="hobbies">Extra-Curricular</button>
@@ -803,6 +804,8 @@
         <section id="about" class="content-section active">
             <h2>About Me</h2>
             <p>I'm a fifth-year Physics undergraduate at IISER Kolkata with a passion for exploring optics and light-matter interaction. I am excited to explore the field of quantum optics and non-linear optics. Apart from academics, I never miss an opportunity for an evening of football. I also play fingerstyle guitar during my free time and engage in volunteer work.</p>
+            
+            
             <div class="highlight-card">
                 <h3><i class="fas fa-graduation-cap"></i> Education</h3>
                 <div class="education-item">
@@ -816,13 +819,27 @@
             <div class="highlight-card">
                 <h3><i class="fas fa-flask"></i> Research Interests</h3>
                 <ul class="interests-list">
-                    <li>Exploring light-matter interactions at nanoscale dimensions</li>
-                    <li>Bridging computational simulations with experimental optics</li>
-                    <li>Quantum optics applications for information processing</li>
-                    <li>Advanced imaging techniques in biological systems</li>
-                    <li>Developing photonic devices with practical applications</li>
-                    <li>Exploiting Non-linear media for integrated photonics</li>
+                    <li>Exploring light-matter interactions at nanoscale dimensions, particularly through photonics and metamaterials</li>
+                    <li>Bridging computational simulations with experimental optics, including polarization analysis and building setups to enhance optical properties for novel materials.</li>
+                    <li>Quantum optics applications for information processing, including chiral and on-chip quantum optics, quantum communication, and quantum sensing</li>
+                    <li>Advanced imaging techniques in biological systems and developing photonic devices with practical applications</li>
+                    <li>Exploiting non-linear media for integrated photonics, including frequency conversion, four-wave mixing, and optical parametric amplification</li>
+                    <li>Nanoscale quantum control including single- and multi-photon emitters based on quantum dots and strong light-matter coupling in molecular cavities</li>
                 </ul>
+            </div>
+
+            <div class="highlight-card">
+                <h3><i class="fas fa-trophy"></i> Achievements</h3>
+                <div class="education-item">
+                    <h4>Indian Academy of Sciences Summer Research Fellowship</h4>
+                    <p><i class="fas fa-award"></i> Selected for prestigious SRFP 2024 program</p>
+                </div>
+
+                <div class="education-item">
+                    <h4>Joint Entrance Screening Test (JEST) 2024</h4>
+                    <p><i class="fas fa-medal"></i> Secured All India Rank of 140</p>
+                    <p>JEST is a national-level screening test for admission to PhD and Integrated PhD programs in premier research institutions in India.</p>
+                </div>
             </div>
             
             <div class="highlight-card">
@@ -866,11 +883,21 @@
                     <div class="timeline-date">Jan 2025 - Present</div>
                     <div class="timeline-content">
                         <h3>Bio-NaP Lab | IISER Kolkata</h3>
+                        
+                        <h4>Interaction of Nanoparticles in Chiral Host Media</h4>
                         <ul>
-                            <li>Investigating plasmonic interactions using dark-field polarization microscopy</li>
-                            <li>Developing MATLAB simulations for Mueller matrix analysis</li>
-                            <li>Studying spin-orbit interaction effects in waveguide plasmonic crystals</li>
-                            <li>Exploring applications for enhanced imaging and sensing technologies</li>
+                            <li>Working on building a setup for enhancing the optical properties of chiral nanoparticles by tight focusing of light</li>
+                            <li>Automating and speeding up the procedure for measuring Mueller matrices by implementing scripts in MATLAB</li>
+                            <li>Building MIE scattering theory for the interaction of a tightly focused light beam in a chiral host medium with nanoparticles</li>
+                            <li>Implementing the theory by simulating scattering matrix in the far field, Mueller matrix, scattering cross-sections and optical properties in Python and MATLAB</li>
+                        </ul>
+                        
+                        <h4>Darkfield Microscopy</h4>
+                        <ul>
+                            <li>Working on darkfield microscopy setup to measure the k-domain Mueller matrices for a waveguide plasmonic crystal</li>
+                            <li>Integrating MATLAB simulations for far-field Mueller matrix measurements and confirming experimental results</li>
+                            <li>Inferring spin-orbit interaction effects such as forward and backward optical spin hall effect</li>
+                            <li>Investigating applications of plasmonic interactions for enhanced imaging and sensing technologies</li>
                         </ul>
                     </div>
                 </div>
@@ -947,6 +974,27 @@
             </div>
         </section>
 
+        <!-- NEW: Teaching Experience Section -->
+        <section id="teaching" class="content-section">
+            <h2>Teaching Experience</h2>
+            
+            <div class="highlight-card">
+                <h3><i class="fas fa-chalkboard-teacher"></i> Teaching Assistant</h3>
+                <div class="education-item">
+                    <h4>Modern Physics and Optics Laboratory</h4>
+                    <p><i class="fas fa-university"></i> Indian Institute of Science Education and Research Kolkata</p>
+                    <p><i class="fas fa-calendar"></i> August 2025 – December 2025</p>
+                    <p>Assisting second-year undergraduate students in the Modern Physics and Optics laboratory course:</p>
+                    <ul class="interests-list">
+                        <li>Guiding students through experimental setups and procedures in optics and modern physics</li>
+                        <li>Helping students understand fundamental concepts of wave optics, interference, diffraction, and polarization</li>
+                        <li>Assisting with data analysis and interpretation of experimental results</li>
+                        <li>Providing support for laboratory report writing and scientific communication</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
         <!-- Skills Section -->
         <section id="skills" class="content-section">
             <h2>Technical Skills</h2>
@@ -962,6 +1010,8 @@
                         <span class="skill-badge">Qiskit</span>
                         <span class="skill-badge">LaTeX</span>
                         <span class="skill-badge">MySQL</span>
+                        <span class="skill-badge">Bash Scripts</span>
+                        <span class="skill-badge">HTML/CSS/JavaScript</span>
                     </div>
                 </div>
                 
@@ -974,6 +1024,7 @@
                         <span class="skill-badge">GNU-Plot</span>
                         <span class="skill-badge">Wolfram Mathematica</span>
                         <span class="skill-badge">NanoHub</span>
+                        <span class="skill-badge">MEEP</span>
                     </div>
                 </div>
                 
@@ -986,6 +1037,8 @@
                         <span class="skill-badge">Quantum Computing</span>
                         <span class="skill-badge">Molecular Dynamics</span>
                         <span class="skill-badge">Material Characterization</span>
+                        <span class="skill-badge">Nano-Photonics</span>
+                        <span class="skill-badge">Non-Linear Optics</span>
                     </div>
                 </div>
                 
@@ -998,6 +1051,8 @@
                         <span class="skill-badge">Experimental Techniques</span>
                         <span class="skill-badge">Technical Writing</span>
                         <span class="skill-badge">Data Analysis</span>
+                        <span class="skill-badge">Mueller Matrix Analysis</span>
+                        <span class="skill-badge">MIE Scattering Theory</span>
                     </div>
                 </div>
             </div>
@@ -1108,6 +1163,7 @@
                         <li>1st Place Interbatch Tournament 2025</li>
                         <li>Gold Medal in Futsal Tournament</li>
                         <li>Spring Pong Table Tennis Champion</li>
+                        <li>Represented Institute at Parakram - ISM Dhanbad</li>
                     </ul>
                 </div>
                 
@@ -1204,5 +1260,3 @@
     </script>
 </body>
 </html>
-
-
